@@ -17,13 +17,15 @@ const Pokemon = () => {
             
         </div>
         <div className="mt-container d-flex justify-content-center mt-3'">
-                {pokemonList.length > 0 && (
-                    <ul>
+                {
+                (pokemonList.length === 0) 
+                    ? <p>Aun no presionas el boton</p>
+                    : <ul>
                         {pokemonList.map((pokemon, index) => (
                             <li key={index}>{pokemon.name}</li>
                         ))}
                     </ul>
-                )}
+                }
             </div>
         </>
         
