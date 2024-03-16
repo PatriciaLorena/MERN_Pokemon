@@ -6,10 +6,7 @@ const Pokemon = () => {
     const fetchPokemon = () => {
         fetch("https://pokeapi.co/api/v2/pokemon?limit=807")
         .then(response => response.json())
-        .then(data => {
-            const pokemonNames = data.results.map(pokemon => pokemon.name);
-            setPokemonList(pokemonNames);
-        })
+        .then(data => {setPokemonList(data.results)})
         .catch(error => console.log(error));
     };
 
@@ -23,7 +20,7 @@ const Pokemon = () => {
                 {pokemonList.length > 0 && (
                     <ul>
                         {pokemonList.map((pokemon, index) => (
-                            <li key={index}>{pokemon}</li>
+                            <li key={index}>{pokemon.name}</li>
                         ))}
                     </ul>
                 )}
