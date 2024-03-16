@@ -9,7 +9,7 @@ const AxiosPokemon = () => {
         if (fetchPokemon) {
             axios.get("https://pokeapi.co/api/v2/pokemon?limit=807")
                 .then(response => {
-                    setPokemonList(response.data.results.map(pokemon => pokemon.name));
+                    setPokemonList(response.data.results);
                 })
                 .catch(error => {
                     console.error('Error al recuperar Pokémon:', error);
@@ -21,16 +21,18 @@ const AxiosPokemon = () => {
     return (
         <>
             <div className='container d-flex justify-content-center mt-3'>
-                <button className='btn btn-dark text-white p-3 font-weight-bold fs-4' onClick={() => setFetchPokemon(true)}>Fetch Pokémon</button>
+                <button className='btn btn-dark text-white p-3 font-weight-bold fs-4' onClick={() => setFetchPokemon(true)}>Axios Pokémon</button>
             </div>
             <div className="mt-container d-flex justify-content-center mt-3'">
-                {pokemonList.length > 0 && (
-                    <ul>
+            {
+                (pokemonList.length === 0) 
+                    ? <p>Aun no presionas el boton</p>
+                    : <ul>
                         {pokemonList.map((pokemon, index) => (
-                            <li key={index}>{pokemon}</li>
+                            <li key={index}>{pokemon.name}</li>
                         ))}
                     </ul>
-                )}
+                }
             </div>
         </>
     );
